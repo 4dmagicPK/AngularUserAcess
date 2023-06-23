@@ -1,0 +1,16 @@
+<form>
+    <h2>Login</h2>
+    <label>
+      <input type="radio" name="role" value="user" checked> User
+    </label>
+    <label>
+      <input type="radio" name="role" value="admin"> Admin
+    </label>
+    <label>
+      <input type="radio" name="role" value="super-admin"> Super Admin
+    </label>
+    <button (click)="login('user')">Login as User</button>
+    <button (click)="login('admin')">Login as Admin</button>
+    <button (click)="login('super-admin')">Login as Super Admin</button>
+  </form>
+  
