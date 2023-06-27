@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+﻿import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 
-@Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
-})
-export class AdminComponent {
-  constructor(public authService: AuthService) { }
+import { User } from '@app/_models';
+import { UserService } from '@app/_services';
+
+@Component({ templateUrl: 'admin.component.html' })
+export class AdminComponent implements OnInit {
+    loading = false;
+    users: User[] = [];
+
+    constructor(private userService: UserService) { }
+
+    ngOnInit() {
+        this.loading = true;
+        this.userService.getAll().pipe(first()).subscribe(users => {
+            this.loading = false;
+            this.users = users;
+        });
+    }
 }
