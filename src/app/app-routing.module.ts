@@ -6,6 +6,8 @@ import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_helpers';
 import { Role } from './_models';
+import { superadminComponent } from './superadmin/superadmin.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
     {
@@ -14,11 +16,22 @@ const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
+        path: 'superadmin',
+        component: superadminComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [Role.superadmin] }
+    },
+    {
         path: 'admin',
         component: AdminComponent,
         canActivate: [AuthGuard],
         data: { roles: [Role.Admin] }
     },
+    {
+        path: 'signup',
+        component: SignupComponent
+    },
+
     {
         path: 'login',
         component: LoginComponent

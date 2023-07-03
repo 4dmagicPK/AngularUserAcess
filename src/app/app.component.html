@@ -2,6 +2,7 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/superadmin" routerLinkActive="active" *ngIf="issuperadmin">Super Admin</a>
         <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin">Admin</a>
         <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
     </div>
@@ -12,12 +13,4 @@
     <router-outlet></router-outlet>
 </div>
 
-<!-- credits -->
-<div class="text-center mt-4">
-    <p>
-        <a href="https://jasonwatmore.com/post/2022/12/22/angular-14-role-based-authorization-tutorial-with-example" target="_blank">Angular 14 - Role Based Authorization Tutorial with Example</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_blank">JasonWatmore.com</a>
-    </p>
-</div>
+  

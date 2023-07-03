@@ -6,6 +6,7 @@ import { delay, materialize, dematerialize } from 'rxjs/operators';
 import { Role } from '@app/_models';
 
 const users = [
+    { id: 1, username: 'superadmin', password: 'superadmin', firstName: 'superAdmin', lastName: 'User', role: Role.superadmin },
     { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
     { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
 ];
@@ -49,7 +50,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUsers() {
-            if (!isAdmin()) return unauthorized();
+            if (!isAdmin() && !issuperadmin()) return unauthorized();
             return ok(users);
         }
 
@@ -57,7 +58,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!isLoggedIn()) return unauthorized();
 
             // only admins can access other user records
-            if (!isAdmin() && currentUser()?.id !== idFromUrl()) return unauthorized();
+            if (!isAdmin() && !issuperadmin() && currentUser()?.id !== idFromUrl()) return unauthorized();
 
             const user = users.find(x => x.id === idFromUrl());
             return ok(user);
@@ -83,6 +84,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function isLoggedIn() {
             const authHeader = headers.get('Authorization') || '';
             return authHeader.startsWith('Bearer fake-jwt-token');
+        }
+
+        function issuperadmin() {
+            return currentUser()?.role === Role.superadmin;
         }
 
         function isAdmin() {

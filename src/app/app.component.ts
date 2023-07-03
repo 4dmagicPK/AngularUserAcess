@@ -11,6 +11,10 @@ export class AppComponent {
         this.authenticationService.user.subscribe(x => this.user = x);
     }
 
+    get issuperadmin() {
+        return this.user?.role === Role.superadmin;
+    }
+
     get isAdmin() {
         return this.user?.role === Role.Admin;
     }
