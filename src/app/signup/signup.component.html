@@ -129,41 +129,42 @@
           <input type="checkbox" id="billingDifferent" name="billingDifferent" [(ngModel)]="billingDifferent">
           <label for="billingDifferent">Billing address is different from Delivery address</label>
         </div>
-
-        <div class="form-field">
-          <div *ngFor="let contactPerson of contactPersons; let i = index">
-            <h5>Contact Person {{ i + 1 }} </h5>
-            <div *ngIf="i > 0">
-              <button class="remove-contact-btn" type="button" (click)="removeContactPerson(i)">-</button>
+      
+      <h5>Contact Persons</h5>
+      <div class="form-field">
+        <div *ngFor="let contactPerson of contactPersons; let i = index" >
+          <!-- <h5>Contact Person {{ i + 1 }}</h5> -->
+          <div class="contact-person">
+            <div>
+              <label>Name</label>
+              <input type="text" name="contactPersonName{{ i }}" [(ngModel)]="contactPersons[i].name" required [disabled]="submitted">
+              <div class="error-message" *ngIf="submitted && i === 0 && !contactPersons[i].name">Name is required</div>
             </div>
-            <div class="contact-person">
-              <label for="contactName{{i}}">Name<span>*</span></label>
-              <input type="text" id="contactName{{i}}" name="contactName{{i}}" [(ngModel)]="contactPerson.name" required>
-              <div *ngIf="submitted && i === 0 && !contactPerson.name" class="error-message">Name is required</div>
+            <div>
+              <label>Telefone</label>
+              <input type="text" name="contactPersonTelefone{{ i }}" [(ngModel)]="contactPersons[i].telefone" [disabled]="submitted">
             </div>
-            <div class="contact-person">
-              <label for="contactTelefone{{i}}">Telephone</label>
-              <input type="text" id="contactTelefone{{i}}" name="contactTelefone{{i}}" [(ngModel)]="contactPerson.telefone">
+            <div>
+              <label>Mobile</label>
+              <input type="text" name="contactPersonMobile{{ i }}" [(ngModel)]="contactPersons[i].mobile" [disabled]="submitted">
             </div>
-            <div class="contact-person">
-              <label for="contactMobile{{i}}">Mobile</label>
-              <input type="text" id="contactMobile{{i}}" name="contactMobile{{i}}" [(ngModel)]="contactPerson.mobile">
-            </div>
-            <div class="contact-person">
-              <label for="contactEmail{{i}}">Email</label>
-              <input type="email" id="contactEmail{{i}}" name="contactEmail{{i}}" [(ngModel)]="contactPerson.email">
+            <div>
+              <label>Email</label>
+              <input type="email" name="contactPersonEmail{{ i }}" [(ngModel)]="contactPersons[i].email" [disabled]="submitted">
+              <div class="error-message" *ngIf="submitted && i === 0 && !contactPersons[i].email">Email is required</div>
+              <div class="error-message" *ngIf="submitted && i > 0 && contactPersons[i].email && !validateEmail(contactPersons[i].email)">Invalid email</div>
             </div>
           </div>
-        <div>
-          <button type="button" (click)="addContactPerson()">+</button>
+          <button class="remove-contact" type="button" (click)="removeContactPerson(i)" [disabled]="submitted || i === 0 || contactPersons.length <= 1">-</button>
         </div>
+      
+        <div *ngIf="contactPersons.length < 5">
+          <button class="add-contact" type="button" (click)="addContactPerson()" [disabled]="submitted">+</button>
         </div>
-        
-        <div class="form-field">
-          <button type="submit" [disabled]="!isFormValid()">Submit</button>
-        </div>
-    </div>
+      
+      </div>
+      
+      <button class="submit" [disabled]="!isFormValid() || submitted">Submit</button>
+      </div>
       </form>
       
-
-  
