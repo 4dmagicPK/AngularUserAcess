@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 // used to create fake backend
 import { fakeBackendProvider, JwtInterceptor, ErrorInterceptor } from './_helpers';
 
@@ -13,6 +14,13 @@ import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
 import { superadminComponent } from './superadmin/superadmin.component';
 import { SignupComponent } from './signup/signup.component';
+import { SocialMediaComponent } from './social-media/social-media.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SuperAdminDashboardComponent } from './super-admin-dashboard/super-admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { TeaserComponent } from './teaser/teaser.component';
 
 @NgModule({
     imports: [
@@ -28,7 +36,14 @@ import { SignupComponent } from './signup/signup.component';
         AdminComponent,
         LoginComponent,
         superadminComponent,
-        SignupComponent
+        SignupComponent,
+        SocialMediaComponent,
+        AdminDashboardComponent,
+        SuperAdminDashboardComponent,
+        UserDashboardComponent,
+        StickyFooterComponent,
+        NewsletterComponent,
+        TeaserComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

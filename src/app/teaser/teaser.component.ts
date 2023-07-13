@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-social-media',
-  templateUrl: './social-media.component.html',
-  styleUrls: ['./social-media.component.less']
+  selector: 'app-teaser',
+  templateUrl: './teaser.component.html',
+  styleUrls: ['./teaser.component.less']
 })
-export class SocialMediaComponent implements OnInit {
+export class TeaserComponent implements OnInit {
 
   closeContainer() {
     const container = document.getElementById("container");
@@ -17,7 +17,7 @@ export class SocialMediaComponent implements OnInit {
   }
 
   userType!: string;
-  article: any;
+  teaser: any;
   dashboardView: any;
   errorMessage!: string;
 
@@ -25,16 +25,16 @@ export class SocialMediaComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit(): void {
-     // Simulating API call to fetch the article data
-     this.http.get('assets/article-data.json').subscribe(
+     // Simulating API call to fetch the teaser data
+     this.http.get('assets/teaser.json').subscribe(
       (response: any) => {
         this.userType = response.userType;
-        this.article = response.data.article;
+        this.teaser = response.data.teaser;
         this.dashboardView = response.data.dashboardView;
-        this.errorMessage = this.article.errorMessage;
+        this.errorMessage = this.teaser.errorMessage;
       },
       (error: any) => {
-        this.errorMessage = 'Error retrieving article data.';
+        this.errorMessage = 'Error retrieving teaser data.';
       }
     );
   }
