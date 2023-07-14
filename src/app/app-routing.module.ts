@@ -15,6 +15,8 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { TeaserComponent } from './teaser/teaser.component';
+import { VideoWallComponent } from './video-wall/video-wall.component';
+import { ArticleListComponentComponent } from './article-list-component/article-list-component.component';
 
 const routes: Routes = [
     {
@@ -71,6 +73,14 @@ const routes: Routes = [
     {
         path:'teaser',
         component:TeaserComponent
+    },
+    {
+        path:'video_wall',
+        component:VideoWallComponent
+    },
+    { 
+        path: 'article-list-component', 
+        component: ArticleListComponentComponent
     },
 
     // otherwise redirect to home

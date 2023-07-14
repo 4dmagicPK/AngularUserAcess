@@ -21,6 +21,8 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { StickyFooterComponent } from './sticky-footer/sticky-footer.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { TeaserComponent } from './teaser/teaser.component';
+import { VideoWallComponent } from './video-wall/video-wall.component';
+import { ArticleListComponentComponent } from './article-list-component/article-list-component.component';
 
 @NgModule({
     imports: [
@@ -43,7 +45,9 @@ import { TeaserComponent } from './teaser/teaser.component';
         UserDashboardComponent,
         StickyFooterComponent,
         NewsletterComponent,
-        TeaserComponent
+        TeaserComponent,
+        VideoWallComponent,
+        ArticleListComponentComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
